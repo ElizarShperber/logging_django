@@ -1,0 +1,17 @@
+{% extends 'default.html' %}
+ 
+{% block title %} News list {% endblock title %}
+ 
+{% block content %}
+<h3>Страница обновления новости/статьи</h3>
+
+{% if is_not_author %}
+<button> <a href="/upgrade_to_author/"> Хочу cтать автором!</a> </button>
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %} 
+    {{ form }} <!-- Теперь нам нужна только готовая форма и кнопка -->
+    <input type="submit" value="Добавить в базу">
+</form>
+{% endblock content %}

@@ -1,0 +1,33 @@
+{% extends 'default.html' %}
+{% load custom_filters %}
+{% block content %}
+
+
+
+<!-- Перед таблицей добавим форму для поиска -->
+<form method="GET">
+    {{ filter.form }} <!-- Форму от фильтров за нас сделает Django. А вот кнопку, увы придётся делать самому -->
+    <input type="submit" value="Найти">
+</form>
+
+
+
+<p class="div">Количество постов {{ posts |length  }}</p>
+
+
+
+{% for post in filter.qs %}
+
+
+<div class="">
+      <p>  {{ post.date_time_create|date:'M d Y' }}</p>
+<h2><a href="{% url 'news_single' post.pk %}">{{ post.title | censor }}</a></h2>
+  <p>{{ post.body|truncatewords:20 | censor   }}</p>
+</div>
+{% endfor %}
+
+
+
+
+
+{% endblock content %}

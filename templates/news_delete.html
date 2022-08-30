@@ -1,0 +1,25 @@
+
+{% extends 'default.html' %}
+{% load custom_filters %}
+{% block content %}
+
+
+<h2>Вы действительно хотите удалить данную новость/статью?</h2>
+
+<div class="">
+   <p> {{ post.date_time_create|date:'M d Y' }} </p>
+<h2>{{ post.title| censor }}</h2>
+<p>{{ post.body| censor  }}</p>
+</div>
+
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="подтвердить"></form>
+
+
+
+<a href="{% url 'news_all'  %}">все новости</a>
+
+
+{% endblock content %}

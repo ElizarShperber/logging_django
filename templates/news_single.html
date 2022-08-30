@@ -1,0 +1,23 @@
+
+{% extends 'default.html' %}
+{% load custom_filters %}
+{% block content %}
+
+<div class="">
+   <p> {{ post.date_time_create|date:'M d Y' }} </p>
+
+{% for category in post.category.all %}
+
+   {{ category.category }}
+
+
+   <a href="/news/subscribe/{{ category.category }}">Подписаться на емайл рассылку категории {{ category.category }}  </a>
+
+{% endfor %}
+
+<h2>{{ post.title| censor }}</h2>
+<p>{{ post.body| censor  }}</p>
+</div>
+<a href="{% url 'news_all'  %}">все новости</a>
+
+{% endblock content %}
